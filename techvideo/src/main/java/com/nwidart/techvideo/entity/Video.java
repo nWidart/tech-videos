@@ -1,6 +1,5 @@
 package com.nwidart.techvideo.entity;
 
-import java.time.OffsetDateTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -25,7 +24,7 @@ public class Video {
   private Integer id;
   private String title;
   private String url;
-  private OffsetDateTime viewedAt;
+  private Integer sessionId;
 
   public Video() {
   }
