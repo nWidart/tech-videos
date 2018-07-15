@@ -6,7 +6,9 @@ This is a very simple application to use inside your company to aggregate tech v
 
 - [x] Users can submit videos to watch which will be added to the queue. 
 - [ ] The "organiser" can start a new learning session for a specific date.
+- [ ] The configured employee list, will receive an email with a list of videos to vote on
 - [ ] The configured employee list can vote on which video to watch for this session
+- [ ] The "organiser" can view the vote results for a session
 
 - [ ] Create a docker image on dockerhub for ease of use
 
