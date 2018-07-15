@@ -32,13 +32,34 @@ When only specifying the video URL, the url will be parsed as a YouTube video an
 curl --request POST \
   --url http://localhost:8080/api/v1/videos \
   --header 'Content-Type: application/json' \
-  --data '{"url": "https://www.youtube.com/watch?v=7V6JO0Rfgas"}'
+  --data '{"url": "https://www.youtube.com/watch?v=tVRzlh_73ws"}'
 ```
 
 **HttPie**
 
 ```bash
-echo '{"url": "https://www.youtube.com/watch?v=7V6JO0Rfgas"}' |  \
+echo '{"url": "https://www.youtube.com/watch?v=tVRzlh_73ws"}' |  \
+  http POST http://localhost:8080/api/v1/videos \
+  Content-Type:application/json
+```
+
+#### Generic video
+
+If you provide a `title` field, the video URL won't be parsed and that field will be used as title instead.
+
+**Curl**
+
+```bash
+curl --request POST \
+  --url http://localhost:8080/api/v1/videos \
+  --header 'Content-Type: application/json' \
+  --data '{"url": "https://www.youtube.com/watch?v=tVRzlh_73ws", "title": "Video title"}'
+```
+
+**HttPie**
+
+```bash
+echo '{"url": "https://www.youtube.com/watch?v=tVRzlh_73ws", "title": "Video title"}' |  \
   http POST http://localhost:8080/api/v1/videos \
   Content-Type:application/json
 ```

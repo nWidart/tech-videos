@@ -27,10 +27,19 @@ public class VideoService {
 
   public Video create(CreateVideoRequest request) throws Exception {
     Video video = request.toModel();
-    final String videoId = urlParser.getVideoId(video.getUrl());
-    final SearchListResponse videoListResponse = youTubeVideoInfoFetcher.fetch(videoId);
-    video.setTitle(videoListResponse.getItems().get(0).getSnippet().getTitle());
+    video.setTitle(getVideoTitle(video));
 
     return this.videoRepository.save(video);
+  }
+
+  private String getVideoTitle(Video video) throws Exception {
+    if (video.getTitle() != null) {
+      return video.getTitle();
+    }
+
+    final String videoId = urlParser.getVideoId(video.getUrl());
+    final SearchListResponse videoListResponse = youTubeVideoInfoFetcher.fetch(videoId);
+
+    return videoListResponse.getItems().get(0).getSnippet().getTitle();
   }
 }
