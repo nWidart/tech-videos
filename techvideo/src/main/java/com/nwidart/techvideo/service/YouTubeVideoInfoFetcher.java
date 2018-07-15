@@ -33,6 +33,6 @@ public class YouTubeVideoInfoFetcher {
   private YouTube getYouTube() {
     return new YouTube.Builder(new NetHttpTransport(), new JacksonFactory(),
         (request) -> {
-        }).setApplicationName("youtube-spring-boot-demo").build();
+        }).setApplicationName("tech-video").build();
   }
 }
