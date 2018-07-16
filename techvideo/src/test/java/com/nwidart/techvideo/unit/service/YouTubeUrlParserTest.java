@@ -1,5 +1,6 @@
-package com.nwidart.techvideo.service;
+package com.nwidart.techvideo.unit.service;
 
+import com.nwidart.techvideo.service.YouTubeUrlParser;
 import org.junit.Assert;
 import org.junit.Test;
 
