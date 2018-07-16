@@ -2,4 +2,5 @@ language: java
 jdk:
  - oraclejdk10
 script:
+- ./techvideo/mvnw clean install -B
 - ./techvideo/mvnw test -B
