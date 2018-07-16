@@ -2,8 +2,6 @@ package com.nwidart.techvideo.integration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nwidart.techvideo.entity.Video;
 import com.nwidart.techvideo.repository.VideoRepository;
 import java.util.HashMap;
@@ -49,14 +47,13 @@ public class VideoControllerTest {
   }
 
   @Test
-  public void itCanCreateAVideo() throws JsonProcessingException {
-    HashMap requestBody = new HashMap<>();
+  public void itCanCreateAVideo() {
+    HashMap<String, String> requestBody = new HashMap<>();
     requestBody.put("url", "my/url");
     requestBody.put("title", "my title");
     HttpHeaders headers = new HttpHeaders();
     headers.setContentType(MediaType.APPLICATION_JSON);
-    String json = new ObjectMapper().writeValueAsString(requestBody);
-    HttpEntity<String> entity = new HttpEntity<>(json, headers);
+    HttpEntity<HashMap> entity = new HttpEntity<>(requestBody, headers);
 
     final ResponseEntity<Video> response = restTemplate.postForEntity("/api/v1/videos", entity, Video.class);
 
