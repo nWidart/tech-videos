@@ -14,7 +14,7 @@ public class YouTubeVideoInfoFetcher {
   @Value("${youtube.apikey}")
   private String youtubeApiKey;
 
-  SearchListResponse fetch(String videoId) {
+  public SearchListResponse fetch(String videoId) {
     SearchListResponse searchResponse = null;
     YouTube youtube = getYouTube();
     try {
