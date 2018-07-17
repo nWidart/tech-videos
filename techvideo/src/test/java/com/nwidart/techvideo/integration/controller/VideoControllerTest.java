@@ -1,4 +1,4 @@
-package com.nwidart.techvideo.integration;
+package com.nwidart.techvideo.integration.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
