@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import com.nwidart.techvideo.entity.Session;
 import com.nwidart.techvideo.repository.SessionRepository;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -41,6 +45,20 @@ public class SessionControllerTest {
     final Session session = body[0];
 
     assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-    assertThat(session.getDate().toInstant()).isEqualTo(now.toInstant());
+    assertThat(session.getDate().toLocalDate()).isEqualTo(now.toLocalDate());
+  }
+
+  @Test
+  public void itCanCreateASession() {
+    HashMap<String, String> requestBody = new HashMap<>();
+    requestBody.put("date", "2018-07-18");
+
+    HttpHeaders headers = new HttpHeaders();
+    headers.setContentType(MediaType.APPLICATION_JSON);
+    HttpEntity<HashMap> entity = new HttpEntity<>(requestBody, headers);
+
+    final ResponseEntity<Session> response = restTemplate.postForEntity("/api/v1/sessions", entity, Session.class);
+    assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+    assertThat(response.getBody().getDate().toLocalDate()).isEqualTo("2018-07-18");
   }
 }
