@@ -35,4 +35,10 @@ public class Video {
     this.title = title;
     this.url = url;
   }
+
+  public Video(String title, String url, Session session) {
+    this.title = title;
+    this.url = url;
+    this.session = session;
+  }
 }

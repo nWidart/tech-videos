@@ -2,6 +2,7 @@ package com.nwidart.techvideo.integration.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.nwidart.techvideo.email.NotifyPerson;
 import com.nwidart.techvideo.entity.Session;
 import com.nwidart.techvideo.repository.SessionRepository;
 import java.time.OffsetDateTime;
@@ -12,6 +13,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -30,6 +32,8 @@ public class SessionControllerTest {
   private TestRestTemplate restTemplate;
   @Autowired
   private SessionRepository sessionRepository;
+  @MockBean
+  private NotifyPerson notifyPerson;
 
   private OffsetDateTime now = OffsetDateTime.now();
 

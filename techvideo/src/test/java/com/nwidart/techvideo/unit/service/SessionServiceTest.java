@@ -1,8 +1,10 @@
 package com.nwidart.techvideo.unit.service;
 
+import com.nwidart.techvideo.email.NotifyPerson;
 import com.nwidart.techvideo.entity.Session;
 import com.nwidart.techvideo.http.requests.CreateSessionRequest;
 import com.nwidart.techvideo.repository.SessionRepository;
+import com.nwidart.techvideo.repository.VideoRepository;
 import com.nwidart.techvideo.service.SessionService;
 import java.text.SimpleDateFormat;
 import java.time.OffsetDateTime;
@@ -22,12 +24,16 @@ public class SessionServiceTest {
   private final OffsetDateTime now = OffsetDateTime.now();
   @Mock
   private SessionRepository sessionRepository;
+  @Mock
+  private VideoRepository videoRepository;
+  @Mock
+  private NotifyPerson notifyPerson;
 
   private SessionService sessionService;
 
   @Before
   public void setUp() throws Exception {
-    this.sessionService = new SessionService(sessionRepository);
+    this.sessionService = new SessionService(sessionRepository, notifyPerson, videoRepository);
   }
 
   @Test
@@ -51,6 +57,8 @@ public class SessionServiceTest {
     );
 
     Mockito.verify(sessionRepository).save(ArgumentMatchers.any(Session.class));
+    Mockito.verify(notifyPerson)
+        .send(ArgumentMatchers.anyString(), ArgumentMatchers.any(Session.class), ArgumentMatchers.any());
     Assert.assertEquals(now.toLocalDate(), session.getDate().toLocalDate());
   }
 
