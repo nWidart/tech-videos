@@ -6,7 +6,7 @@ This is a very simple application to use inside your company to aggregate tech v
 
 - [x] Users can submit videos to watch which will be added to the queue. 
 - [x] The "organiser" can start a new learning session for a specific date.
-- [ ] The configured employee list, will receive an email with a list of videos to vote on
+- [x] The configured employee list, will receive an email with a list of videos to vote on
 - [ ] The configured employee list can vote on which video to watch for this session
 - [ ] The "organiser" can view the vote results for a session
 
@@ -70,7 +70,7 @@ echo '{"url": "https://www.youtube.com/watch?v=tVRzlh_73ws", "title": "Video tit
 
 ### Start a new session
 
-The only required field is the `date` field. This corresponds to the date the video will be watched.
+The only required field is the `date` field. This corresponds to the date the video will be watched. An email will be sent to configured email containing a list of available videos to vote on.
 
 **Curl**
 
