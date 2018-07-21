@@ -1,7 +1,9 @@
 package com.nwidart.techvideo.integration.repository;
 
+import com.nwidart.techvideo.entity.Session;
 import com.nwidart.techvideo.entity.Video;
 import com.nwidart.techvideo.repository.VideoRepository;
+import java.time.OffsetDateTime;
 import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
@@ -30,6 +32,17 @@ public class VideoRepositoryTest {
   public void findAllReturnsAllVideos() {
     List<Video> videos = repository.findAll();
 
+    Assert.assertEquals(1, videos.size());
     Assert.assertEquals("Title One", videos.get(0).getTitle());
+  }
+
+  @Test
+  public void findAvailableVideosReturnsCorrectVideos() {
+    Session session = testEntityManager.persistAndFlush(new Session(OffsetDateTime.now()));
+    testEntityManager.persistAndFlush(new Video("Title One", "url", session));
+
+    List<Video> videos = repository.findAllBySessionIsNull();
+
+    Assert.assertEquals(1, videos.size());
   }
 }
