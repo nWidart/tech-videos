@@ -19,11 +19,17 @@ public class Vote {
   private Integer id;
   @ManyToOne
   private Video video;
+  private Integer sessionId;
 
   public Vote() {
   }
 
   public Vote(Video video) {
     this.video = video;
+  }
+
+  public Vote(Video video, Integer sessionId) {
+    this.video = video;
+    this.sessionId = sessionId;
   }
 }
