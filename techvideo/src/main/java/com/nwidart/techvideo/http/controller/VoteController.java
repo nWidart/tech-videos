@@ -21,7 +21,10 @@ public class VoteController {
   }
 
   @GetMapping
-  public List<Vote> index() {
+  public List<Vote> index(@RequestParam(value = "sessionId", required = false) Integer sessionId) {
+    if (sessionId != null) {
+      return voteService.allForSession(sessionId);
+    }
     return voteService.all();
   }
 
