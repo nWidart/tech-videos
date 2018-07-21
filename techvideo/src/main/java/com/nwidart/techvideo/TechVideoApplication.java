@@ -1,9 +1,7 @@
 package com.nwidart.techvideo;
 
-import com.nwidart.techvideo.email.NotifyPerson;
 import com.sendgrid.SendGrid;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -16,11 +14,6 @@ public class TechVideoApplication {
 
   public static void main(String[] args) {
     SpringApplication.run(TechVideoApplication.class, args);
-  }
-
-  @Bean
-  CommandLineRunner runner(NotifyPerson notifyPerson) {
-    return args -> notifyPerson.send();
   }
 
   @Bean
