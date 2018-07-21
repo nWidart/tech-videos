@@ -25,4 +25,8 @@ public class VoteService {
   public List<Vote> all() {
     return voteRepository.findAll();
   }
+
+  public List<Vote> allForSession(Integer sessionId) {
+    return voteRepository.findAllBySessionId(sessionId);
+  }
 }
