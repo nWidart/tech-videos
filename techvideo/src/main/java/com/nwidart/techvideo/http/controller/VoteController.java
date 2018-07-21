@@ -26,8 +26,9 @@ public class VoteController {
   }
 
   @GetMapping("submit")
-  public Map<String, String> submitVote(@RequestParam("videoId") Integer videoId) {
-    voteService.submitNewVote(videoId);
+  public Map<String, String> submitVote(@RequestParam("videoId") Integer videoId,
+      @RequestParam("sessionId") Integer sessionId) {
+    voteService.submitNewVote(videoId, sessionId);
 
     return Collections.singletonMap("response", "Your vote was submitted. Thank you.");
   }
