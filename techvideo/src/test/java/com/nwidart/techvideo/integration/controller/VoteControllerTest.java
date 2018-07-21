@@ -3,7 +3,9 @@ package com.nwidart.techvideo.integration.controller;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.nwidart.techvideo.entity.Video;
+import com.nwidart.techvideo.entity.Vote;
 import com.nwidart.techvideo.repository.VideoRepository;
+import com.nwidart.techvideo.repository.VoteRepository;
 import lombok.Data;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,10 +28,14 @@ public class VoteControllerTest {
   private TestRestTemplate restTemplate;
   @Autowired
   private VideoRepository videoRepository;
+  @Autowired
+  private VoteRepository voteRepository;
 
   @Before
   public void setUp() throws Exception {
-    videoRepository.save(new Video("My Title", "youtube.com/mytitle"));
+    Video video = new Video("My Title", "youtube.com/mytitle");
+    videoRepository.save(video);
+    voteRepository.save(new Vote(video));
   }
 
   @Test
@@ -39,6 +45,18 @@ public class VoteControllerTest {
 
     assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
     assertThat(response.getBody().getResponse()).isEqualTo("Your vote was submitted. Thank you.");
+  }
+
+  @Test
+  public void itReturnsAListOfVotes() {
+    ResponseEntity<Vote[]> response = restTemplate.getForEntity("/api/v1/votes", Vote[].class);
+
+    Vote[] body = response.getBody();
+    Vote vote = body[0];
+
+    assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+    assertThat(vote.getId()).isEqualTo(1);
+    assertThat(vote.getVideo().getTitle()).isEqualTo("My Title");
   }
 
   @Data

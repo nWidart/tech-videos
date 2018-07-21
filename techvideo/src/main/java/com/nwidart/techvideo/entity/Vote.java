@@ -22,4 +22,8 @@ public class Vote {
 
   public Vote() {
   }
+
+  public Vote(Video video) {
+    this.video = video;
+  }
 }
