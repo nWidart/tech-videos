@@ -2,7 +2,7 @@ package com.nwidart.techvideo.email;
 
 import com.nwidart.techvideo.entity.Session;
 import com.nwidart.techvideo.entity.Video;
-import com.nwidart.techvideo.http.controller.SessionController;
+import com.nwidart.techvideo.http.controller.VoteController;
 import com.nwidart.techvideo.service.email.EmailService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,18 +31,19 @@ public class NotifyPerson {
         + "Please vote on one of the following videos"
         + "</p>"
         + "<ul>"
-        + getVideoListFor(videos)
+        + getVideoListFor(session, videos)
         + "</ul>"
         + "<p>"
         + "Thanks."
         + "</p>";
   }
 
-  private String getVideoListFor(List<Video> videos) {
+  private String getVideoListFor(Session session, List<Video> videos) {
     StringBuilder videoList = new StringBuilder();
     for (Video video : videos) {
       String url = ControllerLinkBuilder
-          .linkTo(ControllerLinkBuilder.methodOn(SessionController.class).index()).toUriComponentsBuilder()
+          .linkTo(ControllerLinkBuilder.methodOn(VoteController.class).submitVote(video.getId(), session.getId()))
+          .toUriComponentsBuilder()
           .scheme("http").port(8080).host("localhost").build().toString();
       videoList
           .append("<li>[<a href=\"" + url + "\">Vote</a>] ")
