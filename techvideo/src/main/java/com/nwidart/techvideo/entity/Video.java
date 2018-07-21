@@ -41,4 +41,8 @@ public class Video {
     this.url = url;
     this.session = session;
   }
+
+  public Video(Integer id) {
+    this.id = id;
+  }
 }
