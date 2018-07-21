@@ -33,7 +33,7 @@ public class VoteServiceTest {
         .when(voteRepository.save(ArgumentMatchers.any(Vote.class)))
         .thenReturn(new Vote(new Video("My video", "youtube.com/myvideo")));
 
-    Vote vote = voteService.submitNewVote(1);
+    Vote vote = voteService.submitNewVote(1, 1);
 
     Mockito.verify(voteRepository).save(ArgumentMatchers.any(Vote.class));
     Assert.assertEquals("My video", vote.getVideo().getTitle());

@@ -5,6 +5,7 @@ import com.nwidart.techvideo.entity.Vote;
 import com.nwidart.techvideo.repository.VoteRepository;
 import java.util.List;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class VoteService {
@@ -15,9 +16,11 @@ public class VoteService {
     this.voteRepository = voteRepository;
   }
 
-  public Vote submitNewVote(Integer videoId) {
+  @Transactional
+  public Vote submitNewVote(Integer videoId, Integer sessionId) {
     Vote vote = new Vote();
     vote.setVideo(new Video(videoId));
+    vote.setSessionId(sessionId);
 
     return voteRepository.save(vote);
   }
