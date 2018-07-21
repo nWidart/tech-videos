@@ -18,6 +18,8 @@ This is a very simple application to use inside your company to aggregate tech v
 
 **Set the api key as environment variable**: "YOUTUBE_API_KEY="
 
+**Set SendGrid api key as environment variable**: "SENDGRID_API_KEY="
+
 **Start the application**: `TechVideoApplication`
 
 ## Usage
