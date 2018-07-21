@@ -1,7 +1,7 @@
 package com.nwidart.techvideo.service;
 
+import com.nwidart.techvideo.entity.Video;
 import com.nwidart.techvideo.entity.Vote;
-import com.nwidart.techvideo.http.requests.CreateVoteRequest;
 import com.nwidart.techvideo.repository.VoteRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,10 @@ public class VoteService {
     this.voteRepository = voteRepository;
   }
 
-  public Vote submitNewVote(CreateVoteRequest request) {
-    return voteRepository.save(request.toModel());
+  public Vote submitNewVote(Integer videoId) {
+    Vote vote = new Vote();
+    vote.setVideo(new Video(videoId));
+
+    return voteRepository.save(vote);
   }
 }
