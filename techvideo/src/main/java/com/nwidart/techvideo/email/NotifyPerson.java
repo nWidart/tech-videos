@@ -44,7 +44,10 @@ public class NotifyPerson {
       String url = ControllerLinkBuilder
           .linkTo(ControllerLinkBuilder.methodOn(SessionController.class).index()).toUriComponentsBuilder()
           .scheme("http").port(8080).host("localhost").build().toString();
-      videoList.append("<li>").append(video.getTitle()).append(" [<a href=\"" + url + "\">Vote</a>]</li>");
+      videoList
+          .append("<li>[<a href=\"" + url + "\">Vote</a>] ")
+          .append("<a href=\"" + video.getUrl() + "\">" + video.getTitle() + "</a>")
+          .append("</li>");
     }
     return videoList.toString();
   }
