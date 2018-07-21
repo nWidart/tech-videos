@@ -41,7 +41,7 @@ public class VideoRepositoryTest {
     Session session = testEntityManager.persistAndFlush(new Session(OffsetDateTime.now()));
     testEntityManager.persistAndFlush(new Video("Title One", "url", session));
 
-    List<Video> videos = repository.findAllBySessionIsNull();
+    List<Video> videos = repository.findAllVideosToVoteOn();
 
     Assert.assertEquals(1, videos.size());
   }
