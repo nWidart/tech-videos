@@ -4,9 +4,11 @@ import com.nwidart.techvideo.entity.Session;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
 import java.util.Date;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class CreateSessionRequest {
 
   private Date date;
