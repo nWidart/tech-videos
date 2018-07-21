@@ -3,6 +3,7 @@ package com.nwidart.techvideo.service;
 import com.nwidart.techvideo.entity.Video;
 import com.nwidart.techvideo.entity.Vote;
 import com.nwidart.techvideo.repository.VoteRepository;
+import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,5 +20,9 @@ public class VoteService {
     vote.setVideo(new Video(videoId));
 
     return voteRepository.save(vote);
+  }
+
+  public List<Vote> all() {
+    return voteRepository.findAll();
   }
 }
