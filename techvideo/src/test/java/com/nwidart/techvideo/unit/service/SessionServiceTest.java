@@ -58,7 +58,7 @@ public class SessionServiceTest {
 
     Mockito.verify(sessionRepository).save(ArgumentMatchers.any(Session.class));
     Mockito.verify(notifyPerson)
-        .send(ArgumentMatchers.anyString(), ArgumentMatchers.any(Session.class), ArgumentMatchers.any());
+        .send(ArgumentMatchers.any(), ArgumentMatchers.any(Session.class), ArgumentMatchers.any());
     Assert.assertEquals(now.toLocalDate(), session.getDate().toLocalDate());
   }
 
