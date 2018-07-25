@@ -2,7 +2,8 @@ language: java
 jdk:
  - oraclejdk10
 script:
-- ./techvideo/mvnw clean install -B
-- ./techvideo/mvnw test -B
+- cd techvideo/
+- ./mvnw clean install -B
+- ./mvnw test -B
 notifications:
   email: false
