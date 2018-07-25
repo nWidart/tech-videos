@@ -10,4 +10,4 @@ CREATE TABLE votes
   session_id int,
   CONSTRAINT votes_fk_video_id FOREIGN KEY (video_id) REFERENCES videos (id),
   CONSTRAINT votes_fk_session_id FOREIGN KEY (session_id) REFERENCES sessions (id)
-) DEFAULT CHARACTER SET ` utf8mb4 `;
+) DEFAULT CHARACTER SET utf8mb4;
