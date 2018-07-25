@@ -9,4 +9,4 @@ CREATE TABLE videos
   url        varchar(255) NOT NULL,
   session_id int,
   CONSTRAINT videos_fk_session_id FOREIGN KEY (session_id) REFERENCES sessions (id)
-);
+) DEFAULT CHARACTER SET ` utf8mb4 `;
