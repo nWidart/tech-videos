@@ -31,7 +31,7 @@ public class VoteRepositoryTest {
     testEntityManager.persistAndFlush(new Vote(video, session1.getId()));
     testEntityManager.persistAndFlush(new Vote(video, session2.getId()));
 
-    List<Vote> votes = repository.findAllBySessionId(1);
+    List<Vote> votes = repository.findAllBySessionId(session1.getId());
     Assert.assertEquals(1, votes.size());
   }
 }
