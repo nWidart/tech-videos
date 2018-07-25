@@ -24,7 +24,7 @@ This is a very simple application to use inside your company to aggregate tech v
 
 ## Usage
 
-### Submit a new video
+### 1. Submit a new video
 
 #### YouTube video
 
@@ -52,7 +52,7 @@ curl --request POST \
   --data '{"url": "https://www.youtube.com/watch?v=tVRzlh_73ws", "title": "Video title"}'
 ```
 
-### Start a new session
+### 2. Start a new session
 
 The only required field is the `date` field. This corresponds to the date the video will be watched. An email will be sent to configured email containing a list of available videos to vote on.
 
@@ -65,9 +65,13 @@ curl --request POST \
   --data '{"date": "2018-07-20"}'
 ```
 
-### View all votes for a session
+### 3. View all votes for a session
 
+This will show the amount of votes for each video for a particular session.
 
+```bash
+curl --request GET --url 'http://localhost:8080/api/v1/votes/results?sessionId=2'
+```
 
 ### Manually vote for a video & session
 
