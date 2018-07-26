@@ -8,9 +8,9 @@ This is a very simple application to use inside your company to aggregate tech v
 - [x] The "organiser" can start a new learning session for a specific date.
 - [x] The configured employee list, will receive an email with a list of videos to vote on
 - [x] The configured employee list can vote on which video to watch for this session
-- [ ] The "organiser" can view the vote results for a session
+- [x] The "organiser" can view the vote results for a session
 
-- [ ] Create a docker image on dockerhub for ease of use
+- [x] Create a docker image on dockerhub for ease of use
 
 ## Run
 
@@ -82,6 +82,18 @@ curl --request GET --url 'http://localhost:8080/api/v1/votes/submit?videoId=1&se
 ```
 
 ## Docker
+
+### Build
+
+```bash
+./mvnw install dockerfile:build -DskipTests
+```
+
+### Run
+
+You need to have a running mysql container running with a user `root`, password `root` and a `techvideos` database.
+
+Fill in the environment variables
 
 ```bash
 docker run -d --name techvideo \
