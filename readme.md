@@ -80,3 +80,16 @@ Fill in the `videoId` and `sessionId` accordingly.
 ```bash
 curl --request GET --url 'http://localhost:8080/api/v1/votes/submit?videoId=1&sessionId=1'
 ```
+
+## Docker
+
+```bash
+docker run -d --name techvideo \
+    -p 80:8080 \
+    -e YOUTUBE_API_KEY="" \
+    -e SENDGRID_API_KEY="" \
+    -e JDBC_URL="jdbc:mysql://mysql:3306/techvideos?useUnicode=yes&characterEncoding=UTF-8&useSSL=false" \
+    --link=mysql \
+    nwidart/techvideo \
+    "techvideo-0.0.1-SNAPSHOT.jar"
+```
