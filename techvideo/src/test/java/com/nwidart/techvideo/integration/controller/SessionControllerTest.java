@@ -39,6 +39,7 @@ public class SessionControllerTest {
 
   @Before
   public void setUp() throws Exception {
+    sessionRepository.deleteAll();
     sessionRepository.save(new Session(now));
   }
 

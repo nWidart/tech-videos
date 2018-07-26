@@ -32,6 +32,7 @@ public class VideoControllerTest {
 
   @Before
   public void setUp() throws Exception {
+    videoRepository.deleteAll();
     videoRepository.save(new Video("title", "url"));
   }
 
