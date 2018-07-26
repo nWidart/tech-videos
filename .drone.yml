@@ -6,6 +6,8 @@ pipeline:
     - mvn clean install -B -DskipTests
 
   build_and_push:
+    when:
+      branch: master
     image: plugins/docker
     secrets: [ docker_username, docker_password ]
     repo: nwidart/techvideo
