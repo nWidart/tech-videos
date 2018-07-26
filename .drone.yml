@@ -3,7 +3,7 @@ pipeline:
     image: maven:3-jdk-10-slim
     commands:
       - cd techvideo/
-      - mvn clean install -B
+      - mvn clean install -B -DskipTests
 
 # techvideo-0.0.1-SNAPSHOT.jar
   build_and_push:
@@ -12,7 +12,7 @@ pipeline:
     repo: nwidart/techvideo
     dockerfile: techvideo/Dockerfile
     build_args:
-      - JAR_FILE=techvideo-0.0.1-SNAPSHOT.jar
+    - JAR_FILE=teachvideo/target/techvideo-0.0.1-SNAPSHOT.jar
     tags: latest
 
 #  deploy:
