@@ -25,6 +25,10 @@ This is a very simple application to use inside your company to aggregate tech v
 
 **Start the application**: `TechVideoApplication`
 
+## Swagger
+
+Swagger UI can be browsed at: [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+
 ## Usage
 
 ### 1. Submit a new video
