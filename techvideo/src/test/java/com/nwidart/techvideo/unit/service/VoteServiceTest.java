@@ -3,6 +3,7 @@ package com.nwidart.techvideo.unit.service;
 import com.nwidart.techvideo.entity.Video;
 import com.nwidart.techvideo.entity.Vote;
 import com.nwidart.techvideo.repository.VoteRepository;
+import com.nwidart.techvideo.repository.vote.CustomVoteRepository;
 import com.nwidart.techvideo.service.VoteService;
 import java.util.List;
 import org.junit.Assert;
@@ -19,6 +20,8 @@ public class VoteServiceTest {
 
   @Mock
   private VoteRepository voteRepository;
+  @Mock
+  private CustomVoteRepository customVoteRepository;
 
   private VoteService voteService;
 
@@ -55,6 +58,15 @@ public class VoteServiceTest {
 
     Assert.assertEquals(2, voteService.allForSession(1).size());
     Mockito.verify(voteRepository).findAllBySessionId(ArgumentMatchers.anyInt());
+  }
+
+  @Test
+  public void countVotesForSession() {
+//    Mockito
+//        .when(voteRepository.votesForSessionCount(1))
+//        .thenReturn(listOfVotes(1));
+
+    // voteService.votesForSessionCount(1);
   }
 
   private List<Vote> listOfVotes(int sessionId) {

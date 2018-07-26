@@ -32,4 +32,9 @@ public class VoteService {
   public List<Vote> allForSession(Integer sessionId) {
     return voteRepository.findAllBySessionId(sessionId);
   }
+
+  public List<Vote> countVotesForSession(Integer sessionId) {
+    return voteRepository.votesForSessionCount(sessionId);
+  }
+
 }

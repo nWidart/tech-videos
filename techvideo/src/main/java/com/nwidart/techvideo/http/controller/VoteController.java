@@ -28,6 +28,11 @@ public class VoteController {
     return voteService.all();
   }
 
+  @GetMapping("results")
+  public List<Vote> results(@RequestParam(value = "sessionId") Integer sessionId) {
+    return voteService.countVotesForSession(sessionId);
+  }
+
   @GetMapping("submit")
   public Map<String, String> submitVote(@RequestParam("videoId") Integer videoId,
       @RequestParam("sessionId") Integer sessionId) {
