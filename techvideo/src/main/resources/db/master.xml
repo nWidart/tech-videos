@@ -9,4 +9,6 @@
     relativeToChangelogFile="true"/>
   <include file="changelog/changelog-003-create-votes-table.sql"
     relativeToChangelogFile="true"/>
+  <include file="changelog/changelog-004-create-users-table.sql"
+    relativeToChangelogFile="true"/>
 </databaseChangeLog>
