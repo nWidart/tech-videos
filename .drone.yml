@@ -2,19 +2,17 @@ pipeline:
   build:
     image: maven:3-jdk-10-slim
     commands:
-      - cd techvideo/
-      - mvn clean install -B -DskipTests
+    - cd techvideo/
+    - mvn clean install -B -DskipTests
 
-# techvideo-0.0.1-SNAPSHOT.jar
   build_and_push:
     image: plugins/docker
     secrets: [ docker_username, docker_password ]
     repo: nwidart/techvideo
     dockerfile: techvideo/Dockerfile
     build_args:
-    - JAR_FILE=teachvideo/target/techvideo-0.0.1-SNAPSHOT.jar
+    - JAR_FILE=techvideo/target/techvideo-0.0.1-SNAPSHOT.jar
     tags: latest
-
 #  deploy:
 #    image: lachlanevenson/k8s-kubectl
 #    secrets: [ kubeconfig_content ]
