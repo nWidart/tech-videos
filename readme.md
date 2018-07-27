@@ -112,3 +112,4 @@ docker run -d --name techvideo \
     nwidart/techvideo \
     "techvideo-0.0.1-SNAPSHOT.jar"
 ```
+.
