@@ -12,6 +12,7 @@ This is a very simple application to use inside your company to aggregate tech v
 - [x] The configured employee list, will receive an email with a list of videos to vote on
 - [x] The configured employee list can vote on which video to watch for this session
 - [x] The "organiser" can view the vote results for a session
+- [x] The "organiser" can select a winning video for a session
 
 - [x] Create a docker image on dockerhub for ease of use
 
@@ -88,6 +89,17 @@ Fill in the `videoId` and `sessionId` accordingly.
 curl --request GET --url 'http://localhost:8080/api/v1/votes/submit?videoId=1&sessionId=1'
 ```
 
+### 4. Assign a video to a session
+
+Once a video was chosen, use this endpoint to assign a session to a video
+
+```bash
+curl --request PUT \
+  --url http://localhost:8080/api/v1/videos/1/session \
+  --header 'Content-Type: text/uri-list' \
+  --data http://localhost:8080/api/v1/sessions/2
+```
+
 ## Docker
 
 ### Build
@@ -112,4 +124,3 @@ docker run -d --name techvideo \
     nwidart/techvideo \
     "techvideo-0.0.1-SNAPSHOT.jar"
 ```
-.
