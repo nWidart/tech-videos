@@ -3,7 +3,7 @@ package com.nwidart.techvideo.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
@@ -25,7 +25,7 @@ public class Video {
   private Integer id;
   private String title;
   private String url;
-  @ManyToOne
+  @OneToOne
   private Session session;
 
   public Video() {

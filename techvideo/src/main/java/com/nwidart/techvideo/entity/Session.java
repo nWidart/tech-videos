@@ -4,6 +4,7 @@ import java.time.OffsetDateTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,6 +19,8 @@ public class Session {
   @GeneratedValue
   private Integer id;
   private OffsetDateTime date;
+  @OneToOne(mappedBy = "session")
+  private Video video;
 
   public Session() {
   }
