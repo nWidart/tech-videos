@@ -17,6 +17,6 @@ public interface VoteRepository extends JpaRepository<Vote, Integer> {
 
   // SELECT video_id, COUNT(votes.id) FROM votes WHERE session_id=2 GROUP BY video_id
 //  //List<List<String>> votesForSessionCount(@Param("sessionId") Integer sessionId);
-  @Query("select count(v.id) as counter, v.video.title as title, v.video.url as url from Vote v group by v.video order by counter desc")
+  @Query("select count(v.id) as counter, v.video from Vote v group by v.video order by counter desc")
   List<Vote> votesForSessionCount(@Param("sessionId") Integer sessionId);
 }
