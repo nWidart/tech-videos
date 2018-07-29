@@ -1,5 +1,9 @@
 package com.nwidart.techvideo.config;
 
+import com.nwidart.techvideo.entity.Session;
+import com.nwidart.techvideo.entity.User;
+import com.nwidart.techvideo.entity.Video;
+import com.nwidart.techvideo.entity.Vote;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapter;
@@ -15,5 +19,6 @@ public class GlobalRepositoryRestConfigurer extends RepositoryRestConfigurerAdap
         .allowedOrigins("*")
         .allowedHeaders("*")
         .allowedMethods("*");
+    config.exposeIdsFor(User.class, Video.class, Session.class, Vote.class);
   }
 }
