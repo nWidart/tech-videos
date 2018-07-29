@@ -13,6 +13,7 @@ This is a very simple application to use inside your company to aggregate tech v
 - [x] The configured employee list can vote on which video to watch for this session
 - [x] The "organiser" can view the vote results for a session
 - [x] The "organiser" can select a winning video for a session
+- [x] employee can retract a vote for a video and session
 
 - [x] Create a docker image on dockerhub for ease of use
 
