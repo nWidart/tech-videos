@@ -1,5 +1,6 @@
 package com.nwidart.techvideo.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.time.OffsetDateTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +20,9 @@ public class Session {
   @GeneratedValue
   private Integer id;
   private OffsetDateTime date;
+
   @OneToOne(mappedBy = "session")
+  @JsonManagedReference
   private Video video;
 
   public Session() {

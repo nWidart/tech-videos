@@ -1,5 +1,6 @@
 package com.nwidart.techvideo.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -26,6 +27,7 @@ public class Video {
   private String title;
   private String url;
   @OneToOne
+  @JsonBackReference
   private Session session;
 
   public Video() {
