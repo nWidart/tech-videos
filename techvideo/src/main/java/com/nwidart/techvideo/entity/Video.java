@@ -25,6 +25,7 @@ public class Video {
   @GeneratedValue
   private Integer id;
   private String title;
+  private String description;
   private String url;
   @OneToOne
   @JsonBackReference
@@ -36,6 +37,12 @@ public class Video {
   public Video(String title, String url) {
     this.title = title;
     this.url = url;
+  }
+
+  public Video(String title, String url, String description) {
+    this.title = title;
+    this.url = url;
+    this.description = description;
   }
 
   public Video(String title, String url, Session session) {

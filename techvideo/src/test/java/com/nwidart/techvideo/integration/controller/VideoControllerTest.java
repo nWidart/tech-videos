@@ -61,4 +61,22 @@ public class VideoControllerTest {
     assertThat(response.getBody().getTitle()).isEqualTo("my title");
     assertThat(response.getBody().getUrl()).isEqualTo("my/url");
   }
+
+  @Test
+  public void itCanCreateAVideoWithDescription() {
+    HashMap<String, String> requestBody = new HashMap<>();
+    requestBody.put("url", "my/url");
+    requestBody.put("title", "my title");
+    requestBody.put("description", "video description");
+    HttpHeaders headers = new HttpHeaders();
+    headers.setContentType(MediaType.APPLICATION_JSON);
+    HttpEntity<HashMap> entity = new HttpEntity<>(requestBody, headers);
+
+    final ResponseEntity<Video> response = restTemplate.postForEntity("/api/v1/videos", entity, Video.class);
+
+    assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+    assertThat(response.getBody().getTitle()).isEqualTo("my title");
+    assertThat(response.getBody().getUrl()).isEqualTo("my/url");
+    assertThat(response.getBody().getDescription()).isEqualTo("video description");
+  }
 }

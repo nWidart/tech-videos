@@ -12,12 +12,17 @@ public class CreateVideoRequest {
   @NotNull
   private String url;
   private String title;
+  private String description;
 
   public CreateVideoRequest(@NotNull String url) {
     this.url = url;
   }
 
+  public CreateVideoRequest(@NotNull String url, String description) {
+    this.url = url;
+  }
+
   public Video toModel() {
-    return new Video(title, url);
+    return new Video(title, url, description);
   }
 }

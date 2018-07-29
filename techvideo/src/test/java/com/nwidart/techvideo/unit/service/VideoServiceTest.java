@@ -54,7 +54,7 @@ public class VideoServiceTest {
         .when(videoRepository.save(ArgumentMatchers.any(Video.class)))
         .thenReturn(new Video("Custom title", "123"));
 
-    Video video = videoService.create(new CreateVideoRequest("123", "Custom title"));
+    Video video = videoService.create(new CreateVideoRequest("123", "Custom title", ""));
 
     Assert.assertEquals("Custom title", video.getTitle());
     Assert.assertEquals("123", video.getUrl());
