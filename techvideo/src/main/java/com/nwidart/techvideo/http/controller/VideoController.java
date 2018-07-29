@@ -6,6 +6,7 @@ import com.nwidart.techvideo.service.VideoService;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,11 +24,13 @@ public class VideoController {
     this.videoService = videoService;
   }
 
+  @CrossOrigin
   @GetMapping
   public List<Video> index() {
     return this.videoService.all();
   }
 
+  @CrossOrigin
   @PostMapping
   @ResponseStatus(code = HttpStatus.CREATED)
   public Video create(@Valid @RequestBody CreateVideoRequest request) throws Exception {
