@@ -44,4 +44,13 @@ public class VoteController {
 
     return Collections.singletonMap("response", "Your vote was submitted. Thank you.");
   }
+
+  @CrossOrigin
+  @GetMapping("retract")
+  public Map<String, String> retractVote(@RequestParam("videoId") Integer videoId,
+      @RequestParam("sessionId") Integer sessionId) {
+    voteService.retractVote(videoId, sessionId);
+
+    return Collections.singletonMap("response", "Your vote was retracted.");
+  }
 }

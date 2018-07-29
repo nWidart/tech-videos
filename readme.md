@@ -89,6 +89,14 @@ Fill in the `videoId` and `sessionId` accordingly.
 curl --request GET --url 'http://localhost:8080/api/v1/votes/submit?videoId=1&sessionId=1'
 ```
 
+### Retract a vote for a video & session
+
+Fill in the `videoId` and `sessionId` accordingly.
+
+```bash
+curl --request GET --url 'http://localhost:8080/api/v1/votes/retract?videoId=1&sessionId=1'
+```
+
 ### 4. Assign a video to a session
 
 Once a video was chosen, use this endpoint to assign a session to a video

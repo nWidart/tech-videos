@@ -2,6 +2,7 @@ package com.nwidart.techvideo.unit.service;
 
 import com.nwidart.techvideo.entity.Video;
 import com.nwidart.techvideo.entity.Vote;
+import com.nwidart.techvideo.repository.VideoRepository;
 import com.nwidart.techvideo.repository.VoteRepository;
 import com.nwidart.techvideo.repository.vote.CustomVoteRepository;
 import com.nwidart.techvideo.service.VoteService;
@@ -21,13 +22,15 @@ public class VoteServiceTest {
   @Mock
   private VoteRepository voteRepository;
   @Mock
+  VideoRepository videoRepository;
+  @Mock
   private CustomVoteRepository customVoteRepository;
 
   private VoteService voteService;
 
   @Before
   public void setUp() throws Exception {
-    this.voteService = new VoteService(voteRepository);
+    this.voteService = new VoteService(voteRepository, videoRepository);
   }
 
   @Test
