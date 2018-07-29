@@ -5,6 +5,7 @@ import com.nwidart.techvideo.service.VoteService;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +21,7 @@ public class VoteController {
     this.voteService = voteService;
   }
 
+  @CrossOrigin
   @GetMapping
   public List<Vote> index(@RequestParam(value = "sessionId", required = false) Integer sessionId) {
     if (sessionId != null) {
@@ -28,11 +30,13 @@ public class VoteController {
     return voteService.all();
   }
 
+  @CrossOrigin
   @GetMapping("results")
   public List<Vote> results(@RequestParam(value = "sessionId") Integer sessionId) {
     return voteService.countVotesForSession(sessionId);
   }
 
+  @CrossOrigin
   @GetMapping("submit")
   public Map<String, String> submitVote(@RequestParam("videoId") Integer videoId,
       @RequestParam("sessionId") Integer sessionId) {

@@ -6,6 +6,7 @@ import com.nwidart.techvideo.service.SessionService;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,11 +24,13 @@ public class SessionController {
     this.sessionService = sessionService;
   }
 
+  @CrossOrigin
   @GetMapping
   public List<Session> index() {
     return sessionService.all();
   }
 
+  @CrossOrigin
   @PostMapping
   @ResponseStatus(code = HttpStatus.CREATED)
   public Session create(@Valid @RequestBody CreateSessionRequest request) {
