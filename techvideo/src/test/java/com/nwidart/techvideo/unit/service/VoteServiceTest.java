@@ -7,6 +7,7 @@ import com.nwidart.techvideo.repository.VoteRepository;
 import com.nwidart.techvideo.repository.vote.CustomVoteRepository;
 import com.nwidart.techvideo.service.VoteService;
 import java.util.List;
+import java.util.Optional;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -43,6 +44,22 @@ public class VoteServiceTest {
 
     Mockito.verify(voteRepository).save(ArgumentMatchers.any(Vote.class));
     Assert.assertEquals("My video", vote.getVideo().getTitle());
+  }
+
+  @Test
+  public void itCanRetractAVote() {
+    Video video = new Video("My video", "youtube.com/myvideo");
+    video.setId(1);
+    Mockito
+        .when(voteRepository.findFirstByVideoAndSessionId(video, 1))
+        .thenReturn(new Vote(video));
+    Mockito
+        .when(videoRepository.findById(video.getId()))
+        .thenReturn(Optional.of(video));
+
+    voteService.retractVote(1, 1);
+
+    Mockito.verify(voteRepository).delete(ArgumentMatchers.any(Vote.class));
   }
 
   @Test

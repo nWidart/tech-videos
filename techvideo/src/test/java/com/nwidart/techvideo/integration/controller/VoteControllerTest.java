@@ -53,6 +53,23 @@ public class VoteControllerTest {
 
   @Test
   @DirtiesContext
+  public void itCanRetractAVote() {
+    Session session = sessionRepository.save(this.session);
+    Video video = videoRepository.save(this.video);
+    Vote vote = new Vote();
+    vote.setVideo(video);
+    vote.setSessionId(session.getId());
+    voteRepository.save(vote);
+
+    ResponseEntity<SubmitVoteResponse> response = restTemplate
+        .getForEntity("/api/v1/votes/retract?videoId=1&sessionId=1", SubmitVoteResponse.class);
+
+    assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+    assertThat(response.getBody().getResponse()).isEqualTo("Your vote was retracted.");
+  }
+
+  @Test
+  @DirtiesContext
   public void indexReturnsAListOfVotes() {
     Video savedVideo = videoRepository.save(video);
     voteRepository.save(new Vote(savedVideo, session.getId()));
