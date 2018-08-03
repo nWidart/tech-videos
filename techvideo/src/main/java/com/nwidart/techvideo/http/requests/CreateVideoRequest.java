@@ -18,10 +18,6 @@ public class CreateVideoRequest {
     this.url = url;
   }
 
-  public CreateVideoRequest(@NotNull String url, String description) {
-    this.url = url;
-  }
-
   public Video toModel() {
     return new Video(title, url, description);
   }
