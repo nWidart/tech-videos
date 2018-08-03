@@ -20,6 +20,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -43,16 +44,19 @@ public class SessionControllerTest {
   }
 
   @Test
+  @DirtiesContext
   public void itReturnsAListOfSessions() {
     final ResponseEntity<Session[]> responseEntity = restTemplate.getForEntity("/api/v1/sessions", Session[].class);
     final Session[] body = responseEntity.getBody();
     final Session session = body[0];
 
+    assertThat(body.length).isEqualTo(1);
     assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
     assertThat(session.getDate().toLocalDate()).isEqualTo(now.toLocalDate());
   }
 
   @Test
+  @DirtiesContext
   public void itCanCreateASession() {
     HashMap<String, String> requestBody = new HashMap<>();
     requestBody.put("date", "2018-07-18");

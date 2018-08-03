@@ -8,6 +8,7 @@ import com.nwidart.techvideo.repository.VideoRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class SessionService {
@@ -29,6 +30,7 @@ public class SessionService {
     return sessionRepository.findAll();
   }
 
+  @Transactional
   public Session create(CreateSessionRequest request) {
     Session session = sessionRepository.save(request.toModel());
 
