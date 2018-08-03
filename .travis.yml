@@ -1,6 +1,8 @@
 language: java
 jdk:
- - oraclejdk10
+- oraclejdk10
+before_install:
+- chmod +x docker_push.sh
 script:
 - cd techvideo/
 - ./mvnw clean install -B
