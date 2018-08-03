@@ -34,4 +34,17 @@ public class VoteRepositoryTest {
     List<Vote> votes = repository.findAllBySessionId(session1.getId());
     Assert.assertEquals(1, votes.size());
   }
+
+  @Test
+  public void findFirstByVideoAndSessionId() {
+    Session session1 = testEntityManager.persistAndFlush(new Session(OffsetDateTime.now()));
+    Session session2 = testEntityManager.persistAndFlush(new Session(OffsetDateTime.now()));
+    Video video = testEntityManager.persistAndFlush(new Video("My Title", "youtube.com/mytitle"));
+    Vote vote = testEntityManager.persistAndFlush(new Vote(video, session1.getId()));
+    testEntityManager.persistAndFlush(new Vote(video, session2.getId()));
+
+    Vote found = repository.findFirstByVideoAndSessionId(video, session1.getId());
+
+    Assert.assertEquals(vote, found);
+  }
 }
