@@ -18,6 +18,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -38,6 +39,7 @@ public class VoteControllerTest {
   private VoteRepository voteRepository;
 
   @Test
+  @DirtiesContext
   public void itCanSubmitAVote() {
     sessionRepository.save(session);
     videoRepository.save(video);
@@ -50,6 +52,7 @@ public class VoteControllerTest {
   }
 
   @Test
+  @DirtiesContext
   public void indexReturnsAListOfVotes() {
     Video savedVideo = videoRepository.save(video);
     voteRepository.save(new Vote(savedVideo, session.getId()));
@@ -65,6 +68,7 @@ public class VoteControllerTest {
   }
 
   @Test
+  @DirtiesContext
   public void indexCanFilterBySessionId() {
     Session session1 = sessionRepository.save(new Session(OffsetDateTime.now()));
     Session session2 = sessionRepository.save(new Session(OffsetDateTime.now()));

@@ -17,6 +17,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -36,6 +37,7 @@ public class VideoControllerTest {
   }
 
   @Test
+  @DirtiesContext
   public void testItReturnsAListOfVideos() {
     final ResponseEntity<Video[]> responseEntity = restTemplate.getForEntity("/api/v1/videos", Video[].class);
     final Video[] body = responseEntity.getBody();
@@ -47,6 +49,7 @@ public class VideoControllerTest {
   }
 
   @Test
+  @DirtiesContext
   public void itCanCreateAVideo() {
     HashMap<String, String> requestBody = new HashMap<>();
     requestBody.put("url", "my/url");
@@ -63,6 +66,7 @@ public class VideoControllerTest {
   }
 
   @Test
+  @DirtiesContext
   public void itCanCreateAVideoWithDescription() {
     HashMap<String, String> requestBody = new HashMap<>();
     requestBody.put("url", "my/url");
