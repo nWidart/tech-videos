@@ -70,4 +70,18 @@ public class SessionControllerTest {
     assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
     assertThat(response.getBody().getDate().toLocalDate()).isEqualTo(date);
   }
+
+  @Test
+  @DirtiesContext
+  public void itCannotCreateASessionInThePast() {
+    HashMap<String, String> requestBody = new HashMap<>();
+    requestBody.put("date", OffsetDateTime.now().minusDays(1L).toLocalDate().toString());
+
+    HttpHeaders headers = new HttpHeaders();
+    headers.setContentType(MediaType.APPLICATION_JSON);
+    HttpEntity<HashMap> entity = new HttpEntity<>(requestBody, headers);
+
+    final ResponseEntity<Session> response = restTemplate.postForEntity("/api/v1/sessions", entity, Session.class);
+    assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
+  }
 }
