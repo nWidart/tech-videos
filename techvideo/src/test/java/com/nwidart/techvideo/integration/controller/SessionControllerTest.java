@@ -59,7 +59,8 @@ public class SessionControllerTest {
   @DirtiesContext
   public void itCanCreateASession() {
     HashMap<String, String> requestBody = new HashMap<>();
-    requestBody.put("date", "2018-07-18");
+    String date = OffsetDateTime.now().plusDays(1L).toLocalDate().toString();
+    requestBody.put("date", date);
 
     HttpHeaders headers = new HttpHeaders();
     headers.setContentType(MediaType.APPLICATION_JSON);
@@ -67,6 +68,6 @@ public class SessionControllerTest {
 
     final ResponseEntity<Session> response = restTemplate.postForEntity("/api/v1/sessions", entity, Session.class);
     assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
-    assertThat(response.getBody().getDate().toLocalDate()).isEqualTo("2018-07-18");
+    assertThat(response.getBody().getDate().toLocalDate()).isEqualTo(date);
   }
 }

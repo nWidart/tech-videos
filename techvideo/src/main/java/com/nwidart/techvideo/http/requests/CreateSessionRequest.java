@@ -4,6 +4,7 @@ import com.nwidart.techvideo.entity.Session;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
 import java.util.Date;
+import javax.validation.constraints.FutureOrPresent;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CreateSessionRequest {
 
+  @FutureOrPresent
   private Date date;
 
   public Session toModel() {
