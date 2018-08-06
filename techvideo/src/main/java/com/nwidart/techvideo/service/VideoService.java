@@ -5,6 +5,7 @@ import com.nwidart.techvideo.entity.Video;
 import com.nwidart.techvideo.http.requests.CreateVideoRequest;
 import com.nwidart.techvideo.repository.VideoRepository;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,6 +24,10 @@ public class VideoService {
 
   public List<Video> all() {
     return videoRepository.findAll();
+  }
+
+  public Optional<Video> findById(Integer id) {
+    return videoRepository.findById(id);
   }
 
   public Video create(CreateVideoRequest request) throws Exception {

@@ -49,6 +49,12 @@ public class VideoServiceTest {
   }
 
   @Test
+  public void findByIdCallsTheRepository() {
+    videoService.findById(1);
+    Mockito.verify(videoRepository).findById(1);
+  }
+
+  @Test
   public void createStoresAVideoWithCustomTitle() throws Exception {
     Mockito
         .when(videoRepository.save(ArgumentMatchers.any(Video.class)))
