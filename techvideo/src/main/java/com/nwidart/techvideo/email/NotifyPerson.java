@@ -2,6 +2,7 @@ package com.nwidart.techvideo.email;
 
 import com.nwidart.techvideo.entity.Session;
 import com.nwidart.techvideo.entity.Video;
+import com.nwidart.techvideo.exception.VideoNotFound;
 import com.nwidart.techvideo.http.controller.VoteController;
 import com.nwidart.techvideo.service.email.EmailService;
 import java.util.List;
@@ -41,10 +42,15 @@ public class NotifyPerson {
   private String getVideoListFor(Session session, List<Video> videos) {
     StringBuilder videoList = new StringBuilder();
     for (Video video : videos) {
-      String url = ControllerLinkBuilder
-          .linkTo(ControllerLinkBuilder.methodOn(VoteController.class).submitVote(video.getId(), session.getId()))
-          .toUriComponentsBuilder()
-          .scheme("http").port(8080).host("localhost").build().toString();
+      String url;
+      try {
+        url = ControllerLinkBuilder
+            .linkTo(ControllerLinkBuilder.methodOn(VoteController.class).submitVote(video.getId(), session.getId()))
+            .toUriComponentsBuilder()
+            .scheme("http").port(8080).host("localhost").build().toString();
+      } catch (VideoNotFound videoNotFound) {
+        continue;
+      }
       videoList
           .append("<li>[<a href=\"" + url + "\">Vote</a>] ")
           .append("<a href=\"" + video.getUrl() + "\">" + video.getTitle() + "</a>")

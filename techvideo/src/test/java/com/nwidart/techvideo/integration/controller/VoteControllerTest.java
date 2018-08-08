@@ -52,6 +52,16 @@ public class VoteControllerTest {
   }
 
   @Test
+  public void submitVoteReturns404WhenVideoDoesNotExist() {
+    sessionRepository.save(session);
+
+    ResponseEntity<SubmitVoteResponse> response = restTemplate
+        .getForEntity("/api/v1/votes/submit?videoId=1&sessionId=1", SubmitVoteResponse.class);
+
+    assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+  }
+
+  @Test
   @DirtiesContext
   public void itCanRetractAVote() {
     Session session = sessionRepository.save(this.session);
