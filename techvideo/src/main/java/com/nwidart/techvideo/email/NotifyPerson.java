@@ -2,6 +2,7 @@ package com.nwidart.techvideo.email;
 
 import com.nwidart.techvideo.entity.Session;
 import com.nwidart.techvideo.entity.Video;
+import com.nwidart.techvideo.exception.SessionNotFound;
 import com.nwidart.techvideo.exception.VideoNotFound;
 import com.nwidart.techvideo.http.controller.VoteController;
 import com.nwidart.techvideo.service.email.EmailService;
@@ -48,7 +49,7 @@ public class NotifyPerson {
             .linkTo(ControllerLinkBuilder.methodOn(VoteController.class).submitVote(video.getId(), session.getId()))
             .toUriComponentsBuilder()
             .scheme("http").port(8080).host("localhost").build().toString();
-      } catch (VideoNotFound videoNotFound) {
+      } catch (VideoNotFound | SessionNotFound videoNotFound) {
         continue;
       }
       videoList
