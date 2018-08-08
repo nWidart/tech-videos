@@ -62,6 +62,12 @@ public class SessionServiceTest {
     Assert.assertEquals(now.toLocalDate(), session.getDate().toLocalDate());
   }
 
+  @Test
+  public void findByIdCallsTheRepository() {
+    sessionService.findById(1);
+    Mockito.verify(sessionRepository).findById(1);
+  }
+
   private List<Session> listOfSessions() {
     return List.of(new Session(OffsetDateTime.now()), new Session(OffsetDateTime.now()));
   }

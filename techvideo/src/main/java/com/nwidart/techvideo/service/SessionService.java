@@ -6,6 +6,7 @@ import com.nwidart.techvideo.http.requests.CreateSessionRequest;
 import com.nwidart.techvideo.repository.SessionRepository;
 import com.nwidart.techvideo.repository.VideoRepository;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +29,10 @@ public class SessionService {
 
   public List<Session> all() {
     return sessionRepository.findAll();
+  }
+
+  public Optional<Session> findById(Integer id) {
+    return sessionRepository.findById(id);
   }
 
   @Transactional
