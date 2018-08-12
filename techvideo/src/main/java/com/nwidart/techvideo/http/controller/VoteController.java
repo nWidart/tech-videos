@@ -54,12 +54,9 @@ public class VoteController {
   @GetMapping("submit")
   public Map<String, String> submitVote(@RequestParam("videoId") Integer videoId,
       @RequestParam("sessionId") Integer sessionId) throws VideoNotFound, SessionNotFound {
-    if (!videoService.findById(videoId).isPresent()) {
-      throw new VideoNotFound("The video was not found");
-    }
-    if (!sessionService.findById(sessionId).isPresent()) {
-      throw new SessionNotFound("The session was not found");
-    }
+    videoService.findById(videoId).orElseThrow(() -> new VideoNotFound("The video was not found"));
+    sessionService.findById(sessionId).orElseThrow(() -> new SessionNotFound("The session was not found"));
+
     voteService.submitNewVote(videoId, sessionId);
 
     return Collections.singletonMap("response", "Your vote was submitted. Thank you.");
