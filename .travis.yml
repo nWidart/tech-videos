@@ -1,6 +1,6 @@
 language: java
 jdk:
-- oraclejdk10
+  - openjdk10
 script:
 - cd techvideo/
 - ./mvnw clean install -B
