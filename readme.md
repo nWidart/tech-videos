@@ -1,5 +1,4 @@
 [![Build Status](https://img.shields.io/travis/nWidart/tech-videos/master.svg?style=flat-square)](https://travis-ci.org/nWidart/tech-videos)
-[![Docker Build Status](https://img.shields.io/docker/build/nwidart/techvideo.svg)](https://hub.docker.com/r/nwidart/techvideo)
 
 # Tech Videos
 
